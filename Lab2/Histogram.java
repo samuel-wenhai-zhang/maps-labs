@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
+//Name - Samuel Zhang
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,14 +14,22 @@ public class Histogram
 
 	public Histogram()
 	{
+		histogram = new TreeMap<String, Integer>();
 	}
 
 	public Histogram(String sent)
 	{
-	}
-	
-	public void setSentence()
-	{
+		this();
+		Scanner in = new Scanner(sent);
+		while (in.hasNext()) {
+			String s = in.next();
+			if (!histogram.containsKey(s)) {
+				histogram.put(s, 1);
+			}
+			else {
+				histogram.put(s, histogram.get(s) + 1);
+			}
+		}
 	}
 
 	public String toString()

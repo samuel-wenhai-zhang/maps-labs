@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
+//Name - Samuel Zhang
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,31 +14,24 @@ public class SpanishToEnglish
 
 	public SpanishToEnglish()
 	{
-
-
-
+		pairs = new TreeMap<String, String>();
 	}
 
 	public void putEntry(String entry)
 	{
 		String[] list = entry.split(" ");
-
-
-
-
-
+		pairs.put(list[0], list[1]);
 	}
 
 	public String translate(String sent)
 	{
 		Scanner chop = new Scanner(sent);
 		String output ="";
-
-
-
-
-
-
+		while (chop.hasNext()) {
+			String spanish = chop.next();
+			String add = pairs.containsKey(spanish) ? pairs.get(spanish) : spanish;
+			output += add + " ";
+		}
 		return output;
 	}
 

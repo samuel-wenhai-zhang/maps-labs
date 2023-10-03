@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
+//Name - Samuel Zhang
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +16,7 @@ public class PartList
 	
 	public PartList()
 	{
-
-
+		partsMap = new TreeMap<Part, Integer>();
 	}
 	
 	public PartList(String fileName)
@@ -25,25 +24,31 @@ public class PartList
 		this();
 		try
 		{
-			Scanner file = new Scanner(new File("lab08d.dat"));
-			//add code here to read from the file 
-			//and add Parts to the map
-
-
-
-
+			Scanner in = new Scanner(new File(fileName));
+			while (in.hasNextLine()) {
+				String line = in.nextLine();
+				if (!line.equals("")) {
+					Part p = new Part(line);
+					if (!partsMap.containsKey(p)) {
+						partsMap.put(p, 1);
+					}
+					else {
+						partsMap.put(p, partsMap.get(p) + 1);
+					}
+				}
+			}
 		}
 		catch( IOException e )  //Most specific exceptions must be listed 1st
 		{
-			out.println(e);
+			e.printStackTrace();
 		}
 		catch( RuntimeException e )
 		{
-			out.println(e);
+			e.printStackTrace();
 		}
 		catch( Exception e )
 		{
-			out.println(e);
+			e.printStackTrace();;
 		}
 		finally
 		{
@@ -54,10 +59,9 @@ public class PartList
 	public String toString()
 	{
 		String output="";
-
-
-
-
+		for (Part key : partsMap.keySet()) {
+			output += key + " - " + partsMap.get(key) + "\n";
+		}
 		return output;
 	}
 }

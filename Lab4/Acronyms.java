@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
+//Name - Samuel Zhang
 
 import java.io.File;
 import java.io.IOException;
@@ -16,37 +16,39 @@ public class Acronyms
 
 	public Acronyms()
 	{
-
-
-
+		acronymTable = new TreeMap<String, String>();
 	}
 
 	public void putEntry(String entry)
 	{
-
-
-
-
+		String[] pair = entry.split(" - ");
+		acronymTable.put(pair[0], pair[1]);
 	}
 
 	public String convert(String sent)
 	{
 		Scanner chop = new Scanner(sent);
 		String output ="";
-
-
-
-
-
-
-
-
+		while (chop.hasNext()) {
+			String word = chop.next();
+			if (!acronymTable.containsKey(word)) {
+				output += word + " ";
+			}
+			else {
+				output += acronymTable.get(word) + " ";
+			}
+		}
 
 		return output;
 	}
 
 	public String toString()
 	{
-		return "";
+		String output = "{";
+		for (String key : acronymTable.keySet()) {
+			output += key + "=" + acronymTable.get(key) + "\n ";
+		}
+		output = output.trim() + "}";
+		return output;
 	}
 }

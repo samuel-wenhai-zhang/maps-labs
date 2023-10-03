@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
+//Name - Samuel Zhang
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,19 @@ public class RelativesRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
-		//add more test cases		
+		Scanner in  = new Scanner(new File("relatives.dat"));
+		int n = in.nextInt();
+		in.nextLine();
+		Relatives r = new Relatives();
+		while (n-- > 0) {
+			r.setPersonRelative(in.nextLine());
+		}
+		System.out.println(r);
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			if (!line.equals("")) {
+				System.out.println(r.getRelatives(line));
+			}
+		}
 	}
 }

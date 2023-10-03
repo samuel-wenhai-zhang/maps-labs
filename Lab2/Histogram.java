@@ -34,8 +34,16 @@ public class Histogram
 
 	public String toString()
 	{
-		String output="";
-		String allStars="";
+		String output="char\t1---5----01---5\n";
+		String allStars = "";
+		for (String k : histogram.keySet()) {
+			allStars = "";
+			for (int i = 0; i < histogram.get(k); i++) {
+				allStars += "*";
+			}
+			output += k + "\t" + allStars + "\n";
+		}
+
 		return output+"\n\n";
 	}
 }

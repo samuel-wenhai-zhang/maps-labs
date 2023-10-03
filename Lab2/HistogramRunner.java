@@ -12,6 +12,10 @@ public class HistogramRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
-		
+		Scanner in = new Scanner(new File("histogram.dat"));
+		while (in.hasNextLine()) {
+			Histogram h = new Histogram(in.nextLine());
+			System.out.println(h);
+		}
 	}
 }

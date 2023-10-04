@@ -31,11 +31,15 @@ public class Acronyms
 		String output ="";
 		while (chop.hasNext()) {
 			String word = chop.next();
-			if (!acronymTable.containsKey(word)) {
-				output += word + " ";
+
+			if (acronymTable.containsKey(word)) {
+				output += acronymTable.get(word) + " ";
+			}
+			else if (acronymTable.containsKey(word.substring(0, word.length() - 1))) {
+				output += acronymTable.get(word.substring(0, word.length() - 1)) + word.substring(word.length() - 1) + " ";
 			}
 			else {
-				output += acronymTable.get(word) + " ";
+				output += word + " ";
 			}
 		}
 
